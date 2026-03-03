@@ -44,6 +44,15 @@
   </header>
 
   <main class="container" id="main" role="main">
+    <!-- قسم الأخبار الحية -->
+<section id="liveNewsSection" class="live-news container" aria-label="أخبار من وكالات">
+  <h3>أحدث الأخبار من وكالات عالمية</h3>
+  <div id="liveNews" class="cards-grid"></div>
+  <div id="liveNewsStatus" class="muted" aria-live="polite"></div>
+</section>
+
+<!-- استدعاء سكربت الأخبار بعد سكربت الموقع -->
+<script src="assets/news.js" defer></script>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
         <h2 id="hero-title">أبرز الأخبار اليوم</h2>
