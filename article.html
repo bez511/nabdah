@@ -1,13 +1,84 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>مقالة - نبضه</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>عنوان المقال — نبضه</title>
+  <meta name="description" content="مقتطف من المقال لعرض وصف موجز للمقال.">
+  <link rel="icon" href="assets/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <h1>عنوان المقالة</h1>
-    <p>هذا مثال لمحتوى مقالة داخل منصة نبضه الإخبارية.</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="نبضه" class="logo">
+        <div class="brand-text">
+          <h1 class="site-title">نبضه</h1>
+          <p class="tagline">أخبار واضحة بدون تضخيم</p>
+        </div>
+      </div>
 
-    <a href="index.html">العودة للصفحة الرئيسية</a>
+      <nav class="main-nav" id="mainNavArticle" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="index.html" class="nav-link">الرئيسية</a>
+        <a href="article.html" class="nav-link active">الأخبار</a>
+        <a href="search.html" class="nav-link">بحث</a>
+      </nav>
+
+      <button id="menuBtnArticle" class="menu-btn" aria-expanded="false" aria-controls="mainNavArticle" aria-label="قائمة">☰</button>
+    </div>
+  </header>
+
+  <main class="container article-main" role="main">
+    <article class="article" aria-labelledby="article-title">
+      <header class="article-header">
+        <h1 id="article-title">عنوان المقال الأول</h1>
+        <div class="article-meta">
+          <time datetime="2026-03-03">٣ مارس ٢٠٢٦</time>
+          <span class="dot">·</span>
+          <span>٥ دقائق قراءة</span>
+        </div>
+        <figure class="article-hero">
+          <img src="assets/thumb1.jpg" alt="صورة المقال" loading="lazy">
+        </figure>
+      </header>
+
+      <div class="article-body">
+        <p>هذا نص تجريبي للمقال. هنا تضع الفقرة الافتتاحية التي تلخّص الفكرة الأساسية وتشد القارئ للاستمرار.</p>
+
+        <h2>عنوان فرعي</h2>
+        <p>محتوى تفصيلي يدعم الفكرة، مع فقرات قصيرة، نقاط واضحة، وروابط داخلية عند الحاجة.</p>
+
+        <blockquote class="quote">اقتباس مهم يبرز نقطة أساسية في المقال.</blockquote>
+
+        <h3>خاتمة</h3>
+        <p>خاتمة موجزة تحث القارئ على التفاعل أو متابعة المزيد من المقالات.</p>
+      </div>
+
+      <footer class="article-footer">
+        <div class="tags">
+          <a href="#" class="tag">سياسة</a>
+          <a href="#" class="tag">محلي</a>
+        </div>
+      </footer>
+    </article>
+
+    <aside class="related" aria-label="مقالات ذات صلة">
+      <h4>مقالات ذات صلة</h4>
+      <ul class="related-list">
+        <li><a href="article.html">عنوان مقال ذو صلة ١</a></li>
+        <li><a href="article.html">عنوان مقال ذو صلة ٢</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="yearArticle"></span> نبضه — كل الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
