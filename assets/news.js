@@ -2,8 +2,10 @@
 (function () {
   // Use CONFIG if available, otherwise local defaults
   const RSS_TO_JSON_BASE = (typeof CONFIG !== "undefined" && CONFIG.RSS_TO_JSON_BASE) || "https://rss2json.vercel.app/api?rss_url=";
- = (typeof CONFIG !== "undefined" && CONFIG.RSS_TO_JSON_BASE) || "https://rssjson.vercel.app/api?url=";
-  const FEEDS = [
+ = (typeof CONFIG !== "undefined" && CONFIG.RSS_TO_JSON_BASE) || "https://rssjson.vercel.app/api?const FEEDS = [
+  { name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml" }
+];
+ = [
     { name: "BBC World", url: "https://feeds.bbci.co.uk/news/world/rss.xml" },
     { name: "BBC Technology", url: "https://feeds.bbci.co.uk/news/technology/rss.xml" },
     { name: "Reuters World", url: "https://www.reutersagency.com/feed/?best-topics=world&post_type=best" },
