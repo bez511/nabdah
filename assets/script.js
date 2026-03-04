@@ -326,15 +326,30 @@ async function initArticlePage() {
 }
 
 /* ---------- Small utility to wire up based on page ---------- */
-function initApp const menuBtn = document.querySelector('.menu-btn');
-const mainNav = document.querySelector('.main-nav');
+function initApp() {
 
-if (menuBtn && mainNav) {
+  const menuBtn = document.querySelector('.menu-btn');
+  const mainNav = document.querySelector('.main-nav');
+
+  if (menuBtn && mainNav) {
     menuBtn.addEventListener('click', () => {
-        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-        menuBtn.setAttribute('aria-expanded', !expanded);
-        mainNav.style.display = expanded ? 'none' : 'flex';
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', !expanded);
+      mainNav.style.display = expanded ? 'none' : 'flex';
     });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // detect page by presence of specific elements
+    if (document.getElementById('articlesGrid')) {
+      initIndexPage();
+    } else if (document.getElementById('articleContainer')) {
+      initArticlePage();
+    } else {
+      initIndexPage().catch(() => {});
+    }
+  });
+  
 }
   document.addEventListener('DOMContentLoaded', () => {
     // detect page by presence of specific elements
