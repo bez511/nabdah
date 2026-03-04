@@ -264,7 +264,20 @@ async function initIndexPage() {
 
     if (searchInput) {
       searchInput.value = state.query;
-      searchInput.addEventListener('input', (e) => doSearch(e.target.value));
+      searchInput.function debounce(fn, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+document.getElementById("searchInput").addEventListener(
+  "input",
+  debounce(function (e) {
+    filterByKeyword(e.target.value);
+  }, 300)
+);
     }
 
     // tag click handler
