@@ -5,12 +5,9 @@
    Style: Enterprise-grade
 ===================================================== */
 
-/* =========================
-   CONFIG
-========================= */
+/* ========================= CONFIG ========================= */
 const CONFIG = {
-  const CONFIG = {
-  NEWS_API_KEY: " 24a893d27b294aa59edc959080784a45 ",
+  NEWS_API_KEY: "24a893d27b294aa59edc959080784a45",
   NEWS_API_URL: "https://newsapi.org/v2/top-headlines",
   COUNTRY: "sa",
   PAGE_SIZE: 20,
@@ -18,17 +15,11 @@ const CONFIG = {
   STORAGE_KEYS: {
     USER: "nabdah_user",
     FAVORITES: "nabdah_favorites",
-    DARK_MODE: "nabdah_dark_mode"
-  }
-};
-  STORAGE_KEYS: {
-    USER: "nabdah_user",
-    FAVORITES: "nabdah_favorites",
     LAST_ARTICLE: "nabdah_last_article",
     DARK_MODE: "nabdah_dark_mode",
     ANALYTICS: "nabdah_analytics"
   },
-  SEARCH_DELAY: 300
+  DATA_URL: "/assets/news.json" // مسار احتياطي لملف محلي
 };
 
 /* =========================
