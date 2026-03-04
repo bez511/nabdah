@@ -250,44 +250,18 @@ const Analytics = {
 /* =========================
    RENDERER
 ========================= */
-const Renderer = {
-  renderArticles(list) {
-    const box = document.getElementById("articles");
-    if (!box) return;
-
-    box.innerHTML = list.length
-      ? list.map(this.articleCard).join("")
-      : "<p>لا توجد نتائج</p>";
-  },
-
-  renderArticle(article) {
+renderArticle(article) {
   const box = document.getElementById("article");
   if (!box) return;
-
   box.innerHTML = `
-    <h1>${article.title}</h1>
-    <p>${Utils.formatDate(article.date)} — ${article.source}</p>
-    ${article.image ? `<img 
-  src="${article.image || 'assets/img/placeholder.jpg'}"
-  onerror="this.src='assets/img/placeholder.jpg'"
-  loading="lazy"
-/>` : ""}
-    <p>${article.content}</p>
-    <a href="${article.url}" target="_blank">المصدر الأصلي</a>
+    <h1>${Utils.escapeHTML(article.title)}</h1>
+    <p>${Utils.formatDate(article.date)} — ${Utils.escapeHTML(article.source || "")}</p>
+    ${article.image ? `<img src="${article.image}" alt="" loading="lazy" onerror="this.src='assets/img/placeholder.jpg'">` : ""}
+    <div>${Utils.escapeHTML(article.content)}</div>
+    <a href="${article.url}" target="_blank" rel="noopener noreferrer">المصدر الأصلي</a>
   `;
 }
 
-  renderArticle(article) {
-    const box = document.getElementById("article");
-    if (!box) return;
-
-    box.innerHTML = `
-      <h1>${article.title}</h1>
-      <p>${Utils.formatDate(article.date)}</p>
-      <div>${article.content}</div>
-    `;
-  }
-};
 
 /* =========================
    ROUTER
