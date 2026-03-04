@@ -1,3 +1,19 @@
+// DEBUG VISIBLE FOR MOBILE
+(function(){
+  function debug(msg){
+    let el = document.getElementById('liveNewsStatus');
+    if(!el){
+      el = document.createElement('div');
+      el.id = 'liveNewsStatus';
+      el.style.cssText = 'background:#fff3cd;color:#856404;padding:8px;border:1px solid #ffeeba;margin:8px;font-size:14px;';
+      document.body.prepend(el);
+    }
+    el.textContent = msg;
+  }
+  window.__news_debug = debug;
+  window.__news_debug('بدء تحميل الأخبار...');
+})();
+
 /* assets/news.js - unified RSS -> JSON loader with fallback to CONFIG / Utils */
 (function () {
   // Use CONFIG if available, otherwise local defaults
