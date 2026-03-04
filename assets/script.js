@@ -135,21 +135,62 @@ const Theme = {
   }
 };
 
-/* =========================
-   DATA SERVICE
-========================= */
+/* ========================= DATA SERVICE ========================= */
 const DataService = {
-  async loadArticles() {
+  async fetchTopNews() {
     try {
-      const res = await fetch(CONFIG.DATA_URL);
-      const data = await res.json();
-      State.articles = data.sort(
-        (a, b) => new Date(b.date) - new Date(a.date)
-      );
-      State.filtered = [...State.articles];
+      // حاول جلب الأخبار من NewsAPI أولاً
+      if (CONFIG.NEWS_API_KEY) {
+        const url = `${CONFIG.NEWS_API_URL}?country=${CONFIG.COUNTRY}&pageSize=${CONFIG.PAGE_SIZE}&apiKey=${CONFIG.NEWS_API_KEY}`;
+        const res = await fetch(url);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.articles && data.articles.length) {
+            State.articles = data.articles.map((a, idx) => ({
+              id: a.url || `news-${idx}`,
+              title: a.title || "",
+              content: a.content || a.description || "",
+              date: a.publishedAt || new Date().toISOString(),
+              source: a.source?.name || "",
+              image: a.urlToImage || "",
+              url: a.url || "#"
+            })).sort((a, b) => new Date(b.date) - new Date(a.date));
+            State.filtered = [...State.articles];
+            return;
+          }
+        } else {
+          console.warn("NewsAPI response not ok", res.status);
+        }
+      }
     } catch (e) {
-      console.error("Data Load Error", e);
+      console.warn("NewsAPI fetch failed", e);
     }
+
+    // fallback: جلب من ملف محلي (assets/news.json) أو من CONFIG.DATA_URL
+    try {
+      const resp = await fetch(CONFIG.DATA_URL);
+      if (resp.ok) {
+        const data = await resp.json();
+        const arr = data.articles || data;
+        State.articles = arr.map((a, idx) => ({
+          id: a.id || a.url || `local-${idx}`,
+          title: a.title || "",
+          content: a.content || a.description || "",
+          date: a.publishedAt || a.date || new Date().toISOString(),
+          source: a.source?.name || a.source || "",
+          image: a.urlToImage || a.image || "",
+          url: a.url || "#"
+        })).sort((a, b) => new Date(b.date) - new Date(a.date));
+        State.filtered = [...State.articles];
+        return;
+      }
+    } catch (e) {
+      console.error("Local data load failed", e);
+    }
+
+    // إن فشل كل شيء، اترك State.articles فارغاً
+    State.articles = [];
+    State.filtered = [];
   }
 };
 
