@@ -152,3 +152,9 @@
 
   document.addEventListener("DOMContentLoaded", loadAllFeeds);
 })();
+<div id="liveNewsStatus" aria-live="polite"></div>
+<div id="liveNews" class="news-grid"></div>
+
+<script src="/assets/news.js"></script>
+<script src="/assets/script.js"></script>
+
