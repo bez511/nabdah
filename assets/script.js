@@ -135,14 +135,28 @@ function renderArticlesList(container, articles, page = 1) {
 }
 
 /* ---------- Pagination UI ---------- */
-function renderPagination(container, totalItems, currentPage) {
-  const totalPages = Math.max(1, Math.ceil(totalItems / CONFIG.articlesPerPage));
-  if (totalPages <= 1) { container.innerHTML = ''; return; }
-
-  let html = '';
-  for (let p = 1; p <= totalPages; p++) {
-    html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" data-page="${p}" aria-label="Page ${p}">${p}</button>`;
+function setupUser() {
+  const user = localStorage.getItem("nabdah_user");
+  const userBox = document.getElementById("userBox");
+  
+  if (user) {
+    userBox.innerHTML = `<span>مرحبًا ${user}</span> <button onclick="logout()">تسجيل خروج</button>`;
+  } else {
+    userBox.innerHTML = `<input id="username"> <button onclick="login()">دخول</button>`;
   }
+}
+
+function login() {
+  const name = document.getElementById("username").value.trim();
+  if (!name) return;
+  localStorage.setItem("nabdah_user", name);
+  location.reload();
+}
+
+function logout() {
+  localStorage.removeItem("nabdah_user");
+  location.reload();
+}
   container.innerHTML = html;
 }
 
