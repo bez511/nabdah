@@ -413,6 +413,8 @@ window.Nabdah = {
     }
   }
 };
-
+<div id="userBox"></div>
+<input id="searchInput" placeholder="ابحث">
+<button id="darkModeBtn">Dark/Light</button>
 /* ---------- Start the app ---------- */
 initApp();
