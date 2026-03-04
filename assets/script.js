@@ -289,7 +289,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   User.init();
   Favorites.init();
   Analytics.init();
-  await DataService.fetchTopNews();
+await DataService.fetchTopNews();
+
 
   const page = Utils.getPage();
 
