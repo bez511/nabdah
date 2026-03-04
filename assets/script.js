@@ -34,9 +34,7 @@ const State = {
   analytics: {}
 };
 
-/* =========================
-   UTILITIES
-========================= */
+/* ========================= UTILITIES ========================= */
 const Utils = {
   debounce(fn, delay) {
     let timer;
@@ -45,9 +43,8 @@ const Utils = {
       timer = setTimeout(() => fn(...args), delay);
     };
   },
-
   escapeHTML(str = "") {
-    return str.replace(/[&<>"']/g, m => ({
+    return String(str).replace(/[&<>"']/g, m => ({
       "&": "&amp;",
       "<": "&lt;",
       ">": "&gt;",
@@ -55,15 +52,14 @@ const Utils = {
       "'": "&#039;"
     })[m]);
   },
-
   formatDate(dateStr) {
     return new Date(dateStr).toLocaleDateString("ar-SA");
   },
-
   getPage() {
     return document.body.dataset.page;
   }
 };
+
 
 /* =========================
    STORAGE
