@@ -50,12 +50,18 @@ function formatDate(article) {
 }
 
 /* ---------- كاش محلي بسيط ---------- */
-function saveCache(key, data) {
+function body.dark {
+  background: #111;
+  color: #eee;
+}
   const payload = { ts: Date.now(), data };
   try { localStorage.setItem(key, JSON.stringify(payload)); } catch (e) {}
 }
-function loadCache(key, ttl) {
-  try {
+function body.dark {
+  background: #111;
+  color: #eee;
+}
+  
     const raw = localStorage.getItem(key);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
@@ -71,7 +77,10 @@ function loadCache(key, ttl) {
 
 /* ---------- تحميل البيانات ---------- */
 async function fetchArticles(forceRefresh = false) {
-  const cached = loadCache(CONFIG.cacheKey, CONFIG.cacheTTLms);
+  const cached = body.dark {
+  background: #111;
+  color: #eee;
+}
   if (cached && !forceRefresh) return cached;
 
   try {
