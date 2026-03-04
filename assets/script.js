@@ -9,7 +9,18 @@
    CONFIG
 ========================= */
 const CONFIG = {
-  DATA_URL: "assets/data/articles.json",
+  const CONFIG = {
+  NEWS_API_KEY: " 24a893d27b294aa59edc959080784a45 ",
+  NEWS_API_URL: "https://newsapi.org/v2/top-headlines",
+  COUNTRY: "sa",
+  PAGE_SIZE: 20,
+  SEARCH_DELAY: 300,
+  STORAGE_KEYS: {
+    USER: "nabdah_user",
+    FAVORITES: "nabdah_favorites",
+    DARK_MODE: "nabdah_dark_mode"
+  }
+};
   STORAGE_KEYS: {
     USER: "nabdah_user",
     FAVORITES: "nabdah_favorites",
@@ -221,18 +232,18 @@ const Renderer = {
       : "<p>لا توجد نتائج</p>";
   },
 
-  articleCard(article) {
-    return `
-      <div class="card">
-        <h3>${Utils.escapeHTML(article.title)}</h3>
-        <p>${Utils.escapeHTML(article.description)}</p>
-        <button onclick="Router.openArticle(${article.id})">اقرأ</button>
-        <button onclick="Favorites.toggle(${article.id})">
-          ${Favorites.isFavorite(article.id) ? "★" : "☆"}
-        </button>
-      </div>
-    `;
-  },
+  renderArticle(article) {
+  const box = document.getElementById("article");
+  if (!box) return;
+
+  box.innerHTML = `
+    <h1>${article.title}</h1>
+    <p>${Utils.formatDate(article.date)} — ${article.source}</p>
+    ${article.image ? `<img src="${article.image}">` : ""}
+    <p>${article.content}</p>
+    <a href="${article.url}" target="_blank">المصدر الأصلي</a>
+  `;
+}
 
   renderArticle(article) {
     const box = document.getElementById("article");
@@ -272,7 +283,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   User.init();
   Favorites.init();
   Analytics.init();
-  await DataService.loadArticles();
+  await DataService.fetchTopNews();
 
   const page = Utils.getPage();
 
