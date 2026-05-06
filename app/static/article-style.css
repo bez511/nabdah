@@ -1,0 +1,1 @@
+:root { --bg: #0b1220; --card: #0f1724; --muted: #9aa4b2; --accent: #ff6b6b; --glass: rgba(255, 255, 255, 0.03); }\nhtml, body { height: 100%; margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: #e6eef6; }\n.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
