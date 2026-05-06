@@ -1,1 +1,1 @@
-flask\npytest
+Flask\nFlask-SQLAlchemy\nFlask-Login\nWerkzeug
